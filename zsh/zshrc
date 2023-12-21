@@ -12,7 +12,10 @@ path+=('$HOME/.local/bin')
 export PATH
 
 # Let CD also use the Documenten folder for autocompletion
-export CDPATH=$CDPATH:/Documenten/
+cdpath+=('.')
+cdpath+=('$HOME/Documenten')
+export CDPATH
+# export CDPATH=$CDPATH:.:$HOME/Documenten
 
 # Automatically call pushd after cd if the given directory is already on the stack
 setopt AUTO_PUSHD
