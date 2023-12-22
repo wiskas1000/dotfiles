@@ -496,6 +496,9 @@ local servers = {
   },
   pylsp = {
     Python = {
+      flake8 = { enabled = true },
+      pyls_black = { enabled = true },
+      isort = { enabled = true, profile = 'black' },
       workspace = { checkThirdParty = false }
     }
   }
