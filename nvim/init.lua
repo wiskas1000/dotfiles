@@ -23,6 +23,23 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local languages = {
+  "bash", 
+  "c", 
+  "julia",
+  "lua", 
+  "make",
+  "python", 
+  "query", 
+  "r", 
+  "sql",
+  "toml",
+  "vim", 
+  "vimdoc", 
+  "xml", 
+  "yaml", 
+}
+
 -- Individual plugin setup
 local plugin_catppuccin = {
   "catppuccin/nvim",
@@ -36,9 +53,9 @@ local plugin_catppuccin = {
 local plugin_onedark = {
   "navarasu/onedark.nvim",
   priority = 1000,
-  -- config = function()
-  --   vim.cmd.colorscheme "onedark"
-  -- end
+--  config = function()
+--    vim.cmd.colorscheme "onedark"
+--  end
 }
 
 local plugin_copilot = {
@@ -69,6 +86,40 @@ local plugin_fugitive = {
   'tpope/vim-fugitive',
 }
 
+local plugin_treesitter = {
+  'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
+  build = ':TSUpdate',
+}
+
+local plugin_lualine = {
+  -- Set lualine as statusline
+  'nvim-lualine/lualine.nvim',
+--   opts = {
+--     options = {
+--       icons_enabled = false,
+--       -- theme = 'onedark',
+--       theme = 'catppuccin',
+--       component_separators = '|',
+--       section_separators = '',
+--     },
+--  },
+  config = function()
+    require('lualine').setup {
+      options = {
+        icons_enabled = false,
+        -- theme = 'onedark',
+        -- theme = 'catppuccin',
+        theme = 'dracula',
+        component_separators = '|',
+        section_separators = '',
+      },
+    }
+  end
+}
+
 -- Select plugins to use
 local plugins = {
   plugin_catppuccin,
@@ -77,6 +128,8 @@ local plugins = {
   plugin_fugitive,
   plugin_telescope,
   plugin_telescope_fzf_native,
+  plugin_treesitter,
+  plugin_lualine,
 }
 local opts = {}
 
@@ -133,3 +186,68 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 -- vim.keymap.set('n', '<C-p>', function() builtin.find_files() end)
 
 require("catppuccin").setup()
+
+-- Treesitter setup
+local config = require("nvim-treesitter.configs")
+
+config.setup({
+  ensure_installed = { languages },
+  auto_install = false,
+  sync_install = false,
+  highlight = { enable = true },
+  indent = { enable = true },  
+  incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = '<c-space>',
+        node_incremental = '<c-space>',
+        scope_incremental = '<c-s>',
+        node_decremental = '<M-space>',
+      },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ['aa'] = '@parameter.outer',
+        ['ia'] = '@parameter.inner',
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        [']m'] = '@function.outer',
+        [']]'] = '@class.outer',
+      },
+      goto_next_end = {
+        [']M'] = '@function.outer',
+        [']['] = '@class.outer',
+      },
+      goto_previous_start = {
+        ['[m'] = '@function.outer',
+        ['[['] = '@class.outer',
+      },
+      goto_previous_end = {
+        ['[M'] = '@function.outer',
+        ['[]'] = '@class.outer',
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ['<leader>a'] = '@parameter.inner',
+      },
+      swap_previous = {
+        ['<leader>A'] = '@parameter.inner',
+      },
+    },
+  },
+})
+
