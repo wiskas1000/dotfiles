@@ -130,7 +130,6 @@ plugins=(
 	poetry
 	extract
 	fzf
-	git
 	colored-man-pages
 	)
 
