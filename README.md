@@ -6,7 +6,7 @@ Ideally, the repository should be used with a program like GNU Stow. Splitting
 up the configuration files and directories and using symlinks is the current
 preferred way.
 
-#Program-specific information
+# Program-specific information
 
 ## vim
 Not maintained
@@ -18,4 +18,23 @@ Not maintained
 TODO: Add screenshots.
 
 ### dependencies
-+ TODO
++ tpm - the 'tmux-plugins/tpm' plugin manager.
+
+## nvim
+Configuration with LSP integration, copilot usage and treesitter setup.
+
+
+### dependencies
++ Lazy - the Lazy plugin manager
++ Mason dependencies
+    + composer
+    + go
+    + java
+    + nodejs
+    + npm
+    + luarocks
+    + pip
+    + php
+    + python3
+    + ruby
+
