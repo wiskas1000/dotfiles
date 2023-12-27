@@ -7,8 +7,8 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-path+=('$HOME/bin')
-path+=('$HOME/.local/bin')
+path+=($HOME/bin)
+path+=($HOME/.local/bin)
 export PATH
 
 # Let CD also use the Documenten folder for autocompletion
