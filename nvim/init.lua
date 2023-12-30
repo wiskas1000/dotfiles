@@ -99,6 +99,10 @@ local plugin_fugitive = {
   'tpope/vim-fugitive',
 }
 
+local plugin_vim_tmux_navigator = {
+    'christoomey/vim-tmux-navigator',
+  }
+
 local plugin_treesitter = {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
@@ -239,6 +243,7 @@ local plugins = {
   plugin_mason,
   plugin_masonlspconfig,
   plugin_nvimlspconfig,
+  plugin_vim_tmux_navigator,
 }
 local opts = {}
 
