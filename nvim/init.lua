@@ -164,11 +164,10 @@ local plugin_nvimlspconfig = {
     { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
     -- Additional lua configuration, makes nvim stuff amazing!
-    'folke/neodev.nvim',
+    {'folke/neodev.nvim', opts = {lspconfig = true}},
   },
   config = function()
     local lspconfig = require('lspconfig')
-    lspconfig.lua_ls.setup({})
 
     local on_attach = function(_, bufnr)
       local nmap = function(keys, func, desc)
@@ -178,9 +177,11 @@ local plugin_nvimlspconfig = {
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
       end
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-      nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+      nmap('<A-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
     end
+    lspconfig.lua_ls.setup({on_attach = on_attach})
   end
+
 --     --  This function gets run when an LSP connects to a particular buffer.
 --     local on_attach = function(_, bufnr)
 --     -- NOTE: Remember that lua is a real programming language, and as such it is possible
@@ -305,7 +306,9 @@ require("catppuccin").setup()
 local config = require("nvim-treesitter.configs")
 
 config.setup({
-  ensure_installed = { languages },
+  ensure_installed = languages,
+  ignore_install = {"javascript"},
+  modules = {},
   auto_install = false,
   sync_install = false,
   highlight = { enable = true },
