@@ -178,8 +178,15 @@ local plugin_nvimlspconfig = {
       end
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<A-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+      nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+      nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+      -- nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+      nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     end
     lspconfig.lua_ls.setup({on_attach = on_attach})
+    lspconfig.pylsp.setup({on_attach = on_attach})
+
   end
 
 --     --  This function gets run when an LSP connects to a particular buffer.
@@ -280,7 +287,7 @@ require('telescope').load_extension('fzf')
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown 
+require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown
     {
       winblend = 10,
       previewer = false,
