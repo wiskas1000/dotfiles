@@ -170,7 +170,7 @@ local plugin_none_ls = {
 		null_ls.setup({
 			sources = {
 				null_ls.builtins.formatting.stylua,
-				-- null_ls.builtins.formatting.eslint,
+				-- null_ls.builtins.diagnostics.eslint,
 				-- null_ls.builtins.formatting.spell,
 			},
 		})
@@ -266,7 +266,7 @@ local plugin_nvimlspconfig = {
 local plugins = {
 	plugin_catppuccin,
 	plugin_onedark,
-	plugin_copilot,
+	-- plugin_copilot,
 	plugin_fugitive,
 	plugin_telescope,
 	plugin_telescope_fzf_native,
