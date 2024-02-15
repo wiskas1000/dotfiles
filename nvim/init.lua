@@ -159,6 +159,8 @@ local plugin_masonlspconfig = {
 		require("mason-lspconfig").setup({
 			ensure_installed = languages_mason,
 			formatters_mason,
+			-- does not work, use vim.tbl_keys()?
+			--
 			-- ensure_installed = languages_mason,
 		})
 	end,
@@ -174,6 +176,7 @@ local plugin_none_ls = {
 				null_ls.builtins.formatting.black,
 				null_ls.builtins.formatting.isort,
 				null_ls.builtins.diagnostics.eslint,
+				null_ls.builtins.diagnostics.flake8,
 				-- null_ls.builtins.formatting.spell,
 			},
 		})
@@ -214,8 +217,29 @@ local plugin_nvimlspconfig = {
 			nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 			nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 		end
-		lspconfig.lua_ls.setup({ on_attach = on_attach })
-		lspconfig.pylsp.setup({ on_attach = on_attach })
+		lspconfig.lua_ls.setup({
+			on_attach = on_attach,
+		})
+		lspconfig.pylsp.setup({
+			on_attach = on_attach,
+			settings = {
+				pylsp = {
+					plugins = {
+						flake8 = {
+							enabled = true,
+						},
+						black = {
+							-- cache_config = true,
+							enabled = true,
+						},
+						isort = {
+							enabled = true,
+							profile = "black",
+						},
+					},
+				},
+			},
+		})
 	end,
 
 	--     --  This function gets run when an LSP connects to a particular buffer.
