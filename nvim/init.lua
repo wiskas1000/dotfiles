@@ -1,10 +1,35 @@
+-- Set leader key to SPACE
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Use system clipboard for yanking and pasting
+-- Otherwise, try
+-- " " Copy to clipboard
+-- vnoremap  <leader>y  "+y
+-- nnoremap  <leader>Y  "+yg_
+-- nnoremap  <leader>y  "+y
+-- nnoremap  <leader>yy  "+yy
+--
+-- " " Paste from clipboard
+-- nnoremap <leader>p "+p
+-- nnoremap <leader>P "+P
+-- vnoremap <leader>p "+p
+-- vnoremap <leader>P "+P
+vim.api.nvim_set_option("clipboard", "unnamed")
+
+-- Set line number
+vim.wo.number = true
+vim.wo.relativenumber = true
+
+-- Tabstops comment
 vim.o.expandtab = true
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
+
+-- Old vimrc settings
+-- set autoindent
+-- set smarttab
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
