@@ -367,6 +367,14 @@ local plugin_which_key = {
 	opts = {},
 }
 
+local plugin_comment = {
+	"numToStr/Comment.nvim",
+	opts = {
+		-- add any options here
+	},
+	lazy = false,
+}
+
 -- Select plugins to use
 local plugins = {
 	plugin_catppuccin,
@@ -384,6 +392,7 @@ local plugins = {
 	plugin_none_ls,
 	plugin_vim_tmux_navigator,
 	plugin_which_key,
+	plugin_comment,
 }
 local opts = {}
 
