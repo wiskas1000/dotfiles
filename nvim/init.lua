@@ -236,7 +236,7 @@ local plugin_none_ls = {
 			end,
 		})
 
-		vim.keymap.set("n", "<leader>gg=G", vim.lsp.buf.format, { desc = "Format file" })
+		-- vim.keymap.set("n", "<leader>gg=G", vim.lsp.buf.format, { desc = "Format file" })
 	end,
 	requires = { "nvim-lua/plenary.nvim" },
 }
@@ -442,6 +442,14 @@ vim.keymap.set("n", "<leader>w", function()
 end, { desc = "[W]rite buffer" })
 -- local builtin = require("telescope.builtin")
 -- vim.keymap.set('n', '<C-p>', function() builtin.find_files() end)
+
+-- Fugitive keybindings
+vim.keymap.set("n", "<leader>gg", function()
+	vim.cmd(":Git")
+end, { desc = "[G]it menu" })
+vim.keymap.set("n", "<leader>gP", function()
+	vim.cmd(":Git push")
+end, { desc = "[G]it push" })
 
 require("catppuccin").setup()
 
