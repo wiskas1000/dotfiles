@@ -443,6 +443,12 @@ end, { desc = "[W]rite buffer" })
 -- local builtin = require("telescope.builtin")
 -- vim.keymap.set('n', '<C-p>', function() builtin.find_files() end)
 
+-- Restore cursor position after opening buffer
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+	pattern = { "*" },
+	command = 'silent! normal! g`"zv',
+})
+
 -- Fugitive keybindings
 vim.keymap.set("n", "<leader>gg", function()
 	vim.cmd(":Git")
