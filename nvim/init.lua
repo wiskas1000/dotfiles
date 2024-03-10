@@ -495,6 +495,12 @@ vim.keymap.set("n", "<leader>t", function()
 	run_makefile_command(command_test)
 end, { desc = "Make [t]est" })
 
+-- Create keybinding for building using Makefile
+vim.keymap.set("n", "<leader>b", function()
+	local command_build = "make"
+	run_makefile_command(command_build)
+end, { desc = "[b]uild using make" })
+
 -- Call colorscheme setup
 require("catppuccin").setup()
 
