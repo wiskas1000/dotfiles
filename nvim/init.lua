@@ -491,7 +491,7 @@ end
 
 -- Create keybinding for testing using Makefile
 vim.keymap.set("n", "<leader>t", function()
-	local command_test = "make test"
+	local command_test = "make t"
 	run_makefile_command(command_test)
 end, { desc = "Make [t]est" })
 
