@@ -467,7 +467,7 @@ vim.keymap.set("n", "<leader>gP", function()
 end, { desc = "[G]it push" })
 
 -- Setup for checking if makefile exists
-function file_exists(name)
+local function file_exists(name)
 	local f = io.open(name, "r")
 	return f ~= nil and io.close(f)
 end
