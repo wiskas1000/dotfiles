@@ -472,6 +472,7 @@ local function file_exists(name)
 	return f ~= nil and io.close(f)
 end
 
+-- Setup for running a command inside nvim terminal
 local run_terminal_command_splitwindow = function(terminal_command)
 	vim.cmd("belowright split")
 	vim.cmd("terminal")
@@ -479,15 +480,20 @@ local run_terminal_command_splitwindow = function(terminal_command)
 	vim.api.nvim_chan_send(vim.bo.channel, "\r")
 end
 
--- Make keybinding for testing
-local command_test = "make t"
-vim.keymap.set("n", "<leader>t", function()
+-- Setup for running a make command
+local run_makefile_command = function(command)
 	if file_exists("Makefile") then
-		run_terminal_command_splitwindow(command_test)
+		run_terminal_command_splitwindow(command)
 	else
 		print("No Makefile found")
 	end
-end, { desc = "[t]est run" })
+end
+
+-- Create keybinding for testing using Makefile
+vim.keymap.set("n", "<leader>t", function()
+	local command_test = "make test"
+	run_makefile_command(command_test)
+end, { desc = "Make [t]est" })
 
 -- Call colorscheme setup
 require("catppuccin").setup()
