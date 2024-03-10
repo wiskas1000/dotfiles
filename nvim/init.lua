@@ -466,6 +466,30 @@ vim.keymap.set("n", "<leader>gP", function()
 	vim.cmd(":Git push")
 end, { desc = "[G]it push" })
 
+-- Setup for checking if makefile exists
+function file_exists(name)
+	local f = io.open(name, "r")
+	return f ~= nil and io.close(f)
+end
+
+local run_terminal_command_splitwindow = function(terminal_command)
+	vim.cmd("belowright split")
+	vim.cmd("terminal")
+	vim.api.nvim_chan_send(vim.bo.channel, terminal_command)
+	vim.api.nvim_chan_send(vim.bo.channel, "\r")
+end
+
+-- Make keybinding for testing
+local command_test = "make t"
+vim.keymap.set("n", "<leader>t", function()
+	if file_exists("Makefile") then
+		run_terminal_command_splitwindow(command_test)
+	else
+		print("No Makefile found")
+	end
+end, { desc = "[t]est run" })
+
+-- Call colorscheme setup
 require("catppuccin").setup()
 
 -- Treesitter setup
