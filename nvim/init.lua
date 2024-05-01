@@ -73,24 +73,24 @@ local languages = {
 	"yaml",
 }
 
-local languages_mason = {
-	"clangd", -- C/C++
-	"julials", -- Julia
-	"lua_ls", -- Lua
-	--  "autotools-language-server", -- Make
-	"pylsp", -- Python
-	--  "r_language_server", -- R
-	"sqls", -- SQL
-	"vimls", -- Vim
-	"lemminx", -- XML
-	"yamlls", -- YAML
-}
-
-local formatters_mason = {
-	"stylua", -- Lua
-	"black", -- Python
-	"isort", -- Python
-}
+-- local languages_mason = {
+-- 	"clangd", -- C/C++
+-- 	"julials", -- Julia
+-- 	"lua_ls", -- Lua
+-- 	--  "autotools-language-server", -- Make
+-- 	"pylsp", -- Python
+-- 	--  "r_language_server", -- R
+-- 	"sqls", -- SQL
+-- 	"vimls", -- Vim
+-- 	"lemminx", -- XML
+-- 	"yamlls", -- YAML
+-- }
+--
+-- local formatters_mason = {
+-- 	"stylua", -- Lua
+-- 	"black", -- Python
+-- 	"isort", -- Python
+-- }
 
 -- Individual plugin setup
 local plugin_catppuccin = {
